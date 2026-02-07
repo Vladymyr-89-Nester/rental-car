@@ -1,0 +1,141 @@
+.carsList {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 48px;
+    column-gap: 32px;
+    margin-bottom: 80px;
+}
+
+.carItem {
+    width: calc((100% - 32px * 3) / 4);
+}
+
+.supportWrapper {
+    margin: 0 auto;
+}
+
+.notFoundCarsItem {}
+
+.notFoundText {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+}
+
+.carImage {
+    border-radius: 14px;
+    margin-bottom: 16px;
+}
+
+.carHeader {
+    display: flex;
+
+}
+
+.carTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+    margin-bottom: 8px;
+    max-width: 200px;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carModel {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #3470ff;
+}
+
+.carPrice {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+    margin-left: auto;
+}
+
+.carInfo {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: #8d929a;
+    margin-bottom: 28px;
+}
+
+.readMoreLink {
+    display: block;
+    width: 100%;
+    padding: 12px 97px;
+    text-align: center;
+    background-color: #3470ff;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 250ms linear;
+
+    &:hover {
+        background-color: #0b44cd;
+    }
+
+    &:focus {
+        background-color: #0b44cd;
+    }
+}
+
+.loadMoreBtn {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 38px;
+    cursor: pointer;
+    border: 1px solid #3470ff;
+    border-radius: 12px;
+    background-color: transparent;
+    transition: border-color 250ms linear;
+
+    &:hover {
+        border-color: #0b44cd;
+    }
+
+    &:focus {
+        border-color: #0b44cd;
+    }
+}
+
+.favoriteWrapper {
+    position: relative;
+}
+
+.favoriteBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.favoriteIcon {
+    width: 16px;
+    height: 16px;
+    fill: #FFFFFF;
+}
+
+.errorWrapper {
+    margin: 0 auto;
+}
+
+.error {
+    color: #3470ff;
+    font-size: 20px;
+}

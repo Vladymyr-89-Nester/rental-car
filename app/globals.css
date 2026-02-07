@@ -1,0 +1,64 @@
+@import 'modern-normalize/modern-normalize.css';
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    font-family: var(--font-geist-manrope);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 120px;
+}
+
+.section {
+    padding: 84px 0 124px 0;
+}
+
+.react-select__menu-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb {
+    background-color: #dadde1;
+    border-radius: 10px;
+
+}
+
+
+.react-select__menu-list::-webkit-scrollbar-button {
+    display: none;
+}

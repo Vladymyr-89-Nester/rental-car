@@ -1,0 +1,115 @@
+.inputWrapper {
+    position: relative;
+    margin-bottom: 16px;
+    font-family: var(--font-geist-inter);
+}
+
+.input {
+    padding: 14px 20px;
+    font-family: var(--font-geist-manrope);
+    width: 100%;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    outline: none;
+    background-color: #f7f7f7;
+    font-weight: 500;
+    line-height: 1.25;
+    border: 1px solid transparent;
+    transition: border 250ms linear;
+
+    &::placeholder {
+        color: #8d929a;
+    }
+
+    &:hover {
+        border: 1px solid #0b44cd;
+    }
+
+    &:focus {
+        border: 1px solid #0b44cd;
+    }
+}
+
+.popover {
+    position: absolute;
+    z-index: 500;
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid #3470ff;
+    padding: 8px 14px 14px 14px;
+    max-width: 276px;
+    display: flex;
+    justify-content: center;
+}
+
+.chevron {
+    fill: #3470ff;
+}
+
+.weekday {
+    border-bottom: 1px solid #3470ff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #8d929a;
+    padding-bottom: 12px;
+}
+
+.dayButton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+
+    &:hover {
+        border: 1px solid #3470ff;
+    }
+}
+
+.selected button {
+    border: 1px solid #3470ff;
+
+}
+
+.outside button {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    color: #8d929a;
+}
+
+.today button {
+    background-color: #3470ff;
+    color: #fafafa;
+    border-radius: 50%;
+}
+
+
+.clearBtn {
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    transform: translateY(-80%);
+    background: none;
+    border: none;
+    color: #0c0d0d;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 250ms linear;
+
+    &:hover {
+        color: #0b44cd;
+    }
+}

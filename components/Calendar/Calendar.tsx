@@ -1,0 +1,146 @@
+'use client';
+
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/style.css';
+import { useState, useRef, useEffect } from 'react';
+import { format, parse, isValid } from 'date-fns';
+
+import css from './Calendar.module.css';
+
+interface CalendarProps {
+  onDateSelect?: (date: Date | undefined) => void;
+}
+
+const Calendar = ({ onDateSelect }: CalendarProps) => {
+  const [date, setDate] = useState<Date | undefined>();
+  const [open, setOpen] = useState(false);
+  const [inputValue, setInputValue] = useState<string>('');
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleDateSelect = (selectedDate: Date | undefined) => {
+    setDate(selectedDate);
+    setInputValue(selectedDate ? format(selectedDate, 'dd/MM/yyyy') : '');
+    setOpen(false);
+    if (onDateSelect) {
+      onDateSelect(selectedDate);
+    }
+  };
+
+  const formatDateInput = (value: string) => {
+    const numbersOnly = value.replace(/\D/g, '').slice(0, 8);
+
+    const day = numbersOnly.slice(0, 2);
+    const month = numbersOnly.slice(2, 4);
+    const year = numbersOnly.slice(4, 8);
+
+    if (numbersOnly.length <= 2) return day;
+    if (numbersOnly.length <= 4) return `${day}/${month}`;
+    return `${day}/${month}/${year}`;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatDateInput(e.target.value);
+    setInputValue(formattedValue);
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const parsedDate = parse(inputValue, 'dd/MM/yyyy', new Date());
+
+      if (isValid(parsedDate)) {
+        handleDateSelect(parsedDate);
+      } else {
+        setInputValue('');
+      }
+    }
+  };
+
+  const handleClearDate = () => {
+    setDate(undefined);
+    setInputValue('');
+    setOpen(false);
+    if (onDateSelect) {
+      onDateSelect(undefined);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [open]);
+
+  return (
+    <>
+      {/* INPUT */}
+      <div className={css.inputWrapper} ref={wrapperRef}>
+        <input
+          ref={inputRef}
+          id='calendar-input'
+          type='text'
+          value={inputValue}
+          name='date'
+          placeholder='Booking date'
+          className={css.input}
+          onClick={handleClick}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+        />
+        {inputValue !== '' && (
+          <button
+            type='button'
+            onClick={handleClearDate}
+            className={css.clearBtn}
+            title='Очистить дату'
+          >
+            ✕
+          </button>
+        )}
+        {/* CALENDAR */}
+        {open && (
+          <div className={css.popover}>
+            <DayPicker
+              mode='single'
+              animate
+              showOutsideDays
+              ISOWeek
+              navLayout='around'
+              selected={date}
+              formatters={{
+                formatWeekdayName: label => format(label, 'EEE').toUpperCase(),
+              }}
+              onDayClick={handleDateSelect}
+              classNames={{
+                chevron: css.chevron,
+                weekday: css.weekday,
+                outside: css.outside,
+                today: css.today,
+                day_button: css.dayButton,
+                selected: css.selected,
+              }}
+            />
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Calendar;

@@ -1,0 +1,124 @@
+.searchBox {
+    display: flex;
+
+    margin-bottom: 56px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: #8d929a;
+}
+
+.labelText {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.select {
+    margin-right: 16px;
+}
+
+.inputFrom {
+    padding: 12px 12px 12px 62px;
+    width: 160px;
+    border-radius: 12px 0 0 12px;
+    outline: none;
+    background-color: #f7f7f7;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    border: none;
+    border-right: 1px solid #dadde1;
+    cursor: pointer;
+
+    &::placeholder {
+        color: #101828;
+    }
+}
+
+.placeholderFrom {
+    position: absolute;
+    top: 12px;
+    left: 22px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+}
+
+.inputTo {
+    padding: 12px 12px 12px 42px;
+    width: 160px;
+    border-radius: 0 12px 12px 0;
+    outline: none;
+    background-color: #f7f7f7;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    border: none;
+    cursor: pointer;
+}
+
+.placeholderTo {
+    position: absolute;
+    top: 12px;
+    left: 182px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+}
+
+.inputWrapper {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    transition: border 250ms linear;
+
+    &:hover {
+        border: 1px solid #0b44cd;
+    }
+
+    &:focus-within {
+        border: 1px solid #0b44cd;
+    }
+}
+
+.searchBtn {
+    display: inline-block;
+    margin-left: 16px;
+    padding: 12px 51px;
+    max-width: 156px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #FFFFFF;
+    background-color: #3470ff;
+    border-radius: 12px;
+    transition: background-color 250ms linear;
+
+    &:hover {
+        background-color: #0b44cd;
+    }
+
+    &:focus {
+        background-color: #0b44cd;
+    }
+}
+
+.error {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    color: #3470ff;
+    font-size: 20px;
+    padding: 23px 0;
+    margin-bottom: 56px;
+}

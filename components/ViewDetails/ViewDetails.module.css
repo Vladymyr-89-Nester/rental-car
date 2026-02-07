@@ -1,0 +1,103 @@
+.viewDetailsWrapper {
+    display: flex;
+    gap: 72px;
+    align-items: center;
+    justify-content: center;
+}
+
+.informationWrapper {
+    max-width: 488px;
+}
+
+.imageDetails {
+    border-radius: 19px;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+    color: #101828;
+    margin-bottom: 8px;
+}
+
+.location {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+    margin-bottom: 16px;
+}
+
+.iconLocation {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.address {
+    margin-right: 16px;
+}
+
+.price {
+    display: block;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+    color: #3470ff;
+    margin-bottom: 32px;
+}
+
+.description {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+    margin-bottom: 68px;
+}
+
+.infoTitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #101828;
+    margin-bottom: 20px;
+}
+
+.infoList {
+    margin-bottom: 110px;
+}
+
+.infoItem:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.infoText {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.supportWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.errorWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.errorText {
+    color: #3470ff;
+    font-size: 20px;
+}
