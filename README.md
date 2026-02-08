@@ -25,7 +25,6 @@ A modern and user-friendly car rental application built with cutting-edge web te
 - **Booking System**: Check availability and reserve your preferred vehicle
 - **Interactive Calendar**: Select rental dates with an intuitive date picker
 - **Favorites Management**: Save your preferred cars for quick access
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Real-time Notifications**: Get instant feedback on your actions via toast notifications
 - **State Management**: Efficient data handling with Zustand and TanStack Query
 
