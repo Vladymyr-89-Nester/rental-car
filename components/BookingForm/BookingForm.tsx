@@ -5,7 +5,7 @@ import Calendar from '../Calendar/Calendar';
 export default function BookingForm() {
   const handleSubmit = (formData: FormData) => {
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    
     toast.success(
       `Thank you for your order. We will contact you at the email address you provided.`,
       {
