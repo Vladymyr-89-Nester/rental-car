@@ -1,63 +1,64 @@
 'use client';
 
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, DateRange } from 'react-day-picker';
 import 'react-day-picker/style.css';
 import { useState, useRef, useEffect } from 'react';
-import { format, parse, isValid } from 'date-fns';
+import { format } from 'date-fns';
 
 import css from './Calendar.module.css';
 
 interface CalendarProps {
-  onDateSelect?: (date: Date | undefined) => void;
+  onDateSelect?: (date: DateRange | undefined) => void;
 }
 
 const Calendar = ({ onDateSelect }: CalendarProps) => {
-  const [date, setDate] = useState<Date | undefined>();
+  const [date, setDate] = useState<DateRange | undefined>();
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>('');
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [hoveredDay, setHoveredDay] = useState<Date | undefined>();
 
   const handleClick = () => {
     setOpen(true);
   };
 
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    setDate(selectedDate);
-    setInputValue(selectedDate ? format(selectedDate, 'dd/MM/yyyy') : '');
+  const handleDateSelect = (range: DateRange | undefined) => {
+    setDate(range);
+
+    if (!range?.from) {
+      setInputValue('');
+      return;
+    }
+
+    if (!range.to || range.from.getTime() === range.to.getTime()) {
+      setInputValue(format(range.from, 'dd/MM/yyyy'));
+      return;
+    }
+
+    setInputValue(
+      `${format(range.from, 'dd/MM/yyyy')} - ${format(range.to, 'dd/MM/yyyy')}`
+    );
+
+    setHoveredDay(undefined);
     setOpen(false);
-    if (onDateSelect) {
-      onDateSelect(selectedDate);
-    }
+    onDateSelect?.(range);
   };
 
-  const formatDateInput = (value: string) => {
-    const numbersOnly = value.replace(/\D/g, '').slice(0, 8);
+  const hoverRange: DateRange | undefined =
+    date?.from && !date?.to && hoveredDay
+      ? {
+          from: date.from,
+          to: hoveredDay > date.from ? hoveredDay : date.from,
+        }
+      : undefined;
 
-    const day = numbersOnly.slice(0, 2);
-    const month = numbersOnly.slice(2, 4);
-    const year = numbersOnly.slice(4, 8);
-
-    if (numbersOnly.length <= 2) return day;
-    if (numbersOnly.length <= 4) return `${day}/${month}`;
-    return `${day}/${month}/${year}`;
+  const handleDayMouseEnter = (day: Date) => {
+    setHoveredDay(day);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formattedValue = formatDateInput(e.target.value);
-    setInputValue(formattedValue);
-  };
-
-  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      const parsedDate = parse(inputValue, 'dd/MM/yyyy', new Date());
-
-      if (isValid(parsedDate)) {
-        handleDateSelect(parsedDate);
-      } else {
-        setInputValue('');
-      }
-    }
+  const handleDayMouseLeave = () => {
+    setHoveredDay(undefined);
   };
 
   const handleClearDate = () => {
@@ -89,7 +90,6 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
 
   return (
     <>
-      {/* INPUT */}
       <div className={css.inputWrapper} ref={wrapperRef}>
         <input
           ref={inputRef}
@@ -100,8 +100,7 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
           placeholder='Booking date'
           className={css.input}
           onClick={handleClick}
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
+          readOnly
         />
         {inputValue !== '' && (
           <button
@@ -113,20 +112,24 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
             ✕
           </button>
         )}
-        {/* CALENDAR */}
+
         {open && (
           <div className={css.popover}>
             <DayPicker
-              mode='single'
+              mode='range'
               animate
               showOutsideDays
+              disabled={{ before: new Date() }}
               ISOWeek
               navLayout='around'
               selected={date}
+              onDayMouseEnter={handleDayMouseEnter}
+              onDayMouseLeave={handleDayMouseLeave}
+              modifiers={{ hoverRange }}
               formatters={{
                 formatWeekdayName: label => format(label, 'EEE').toUpperCase(),
               }}
-              onDayClick={handleDateSelect}
+              onSelect={handleDateSelect}
               classNames={{
                 chevron: css.chevron,
                 weekday: css.weekday,
@@ -134,6 +137,9 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
                 today: css.today,
                 day_button: css.dayButton,
                 selected: css.selected,
+                range_start: css.rangeStart,
+                range_end: css.rangeEnd,
+                range_middle: css.rangeMiddle,
               }}
             />
           </div>

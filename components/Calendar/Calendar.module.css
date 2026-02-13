@@ -16,6 +16,7 @@
     line-height: 1.25;
     border: 1px solid transparent;
     transition: border 250ms linear;
+    cursor: pointer;
 
     &::placeholder {
         color: #8d929a;
@@ -112,4 +113,24 @@
     &:hover {
         color: #0b44cd;
     }
+}
+
+.hoverRange button {
+    background-color: #bfdbfe !important;
+}
+
+.rangeStart button {
+    background-color: #8d929a !important;
+    color: #fff !important;
+
+}
+
+.rangeEnd button {
+    background-color: #8d929a !important;
+    color: #fff !important;
+
+}
+
+.rangeMiddle button {
+    background-color: #bfdbfe !important;
 }

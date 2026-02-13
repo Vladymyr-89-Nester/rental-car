@@ -26,6 +26,7 @@ export const metadata: Metadata = {
 export default async function CatalogPage() {
   return (
     <section className='section'>
+      <h2 className='visually-hidden'>Car Catalog</h2>
       <CarsList />
     </section>
   );

@@ -54,6 +54,7 @@ export default async function DetailsPage({ params }: Props) {
 
   return (
     <section className='section'>
+      <h2 className='visually-hidden'>Car Details</h2>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ViewDetails />
       </HydrationBoundary>

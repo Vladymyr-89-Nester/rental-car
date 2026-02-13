@@ -71,23 +71,27 @@ export default function CarsList() {
       <SearchBox />
       <ul className={css.carsList}>
         {isError && (
-          <div className={css.errorWrapper}>
-            <p className={css.error}>Failed to load cars</p>
-          </div>
+          <li>
+            <div className={css.errorWrapper}>
+              <p className={css.error}>Failed to load cars</p>
+            </div>
+          </li>
         )}
         {isLoading && !isError && (
-          <div className={css.supportWrapper}>
-            <InfinitySpin color='#3470ff' />
-          </div>
+          <li>
+            <div className={css.supportWrapper}>
+              <InfinitySpin color='#3470ff' />
+            </div>
+          </li>
         )}
         {cars.length === 0 && !isLoading && !isError ? (
-          <div className={css.supportWrapper}>
-            <li className={css.notFoundCarsItem}>
+          <li className={css.notFoundCarsItem}>
+            <div className={css.supportWrapper}>
               <p className={css.notFoundText}>
                 Sorry, no cars were found matching your request.
               </p>
-            </li>
-          </div>
+            </div>
+          </li>
         ) : (
           cars.map(car => (
             <li key={car.id} className={css.carItem}>

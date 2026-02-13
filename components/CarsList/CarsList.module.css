@@ -4,6 +4,7 @@
     row-gap: 48px;
     column-gap: 32px;
     margin-bottom: 80px;
+    justify-content: center;
 }
 
 .carItem {
@@ -13,8 +14,6 @@
 .supportWrapper {
     margin: 0 auto;
 }
-
-.notFoundCarsItem {}
 
 .notFoundText {
     font-weight: 500;
